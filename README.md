@@ -105,7 +105,7 @@ PLAYWRIGHT_MODULE=/absolute/path/to/playwright/index.js node tests/browser-smoke
 
 ครอบคลุมค้นหา, ข้อความร่างแยกผู้ใช้, ส่ง/รับข้อความทดลอง, แสดงข้อความเป็น text ปลอดภัย, mobile navigation และ overflow ที่ 320/390/768px
 
-**สถานะการตรวจ:** lint, typecheck, 7 unit tests, build และ browser demo ผ่านแล้ว; schema ติดตั้งบน Supabase แล้ว ใช้ `database/verify.sql` ตรวจ SQL แบบ rollback ได้ การทดสอบ LINE end-to-end อยู่ระหว่าง deploy
+**สถานะการตรวจ:** lint, typecheck, 7 unit tests, build และ browser demo ผ่านแล้ว; schema ติดตั้งบน Supabase และ `database/verify.sql` ผ่านแล้ว (rollback ข้อมูลทดสอบ) ทดสอบ production LINE → เว็บ → LINE ผ่านแล้ว รวมทั้งตรวจ unauthenticated API และ webhook ลายเซ็นไม่ถูกต้องได้ 401
 
 ## ลิงก์ส่งงาน
 
