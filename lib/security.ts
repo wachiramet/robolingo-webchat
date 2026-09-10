@@ -2,9 +2,14 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { isIP } from "node:net";
 
 // Vercel overwrites this header. Never trust client-supplied forwarding headers.
-export function loginRateKey(headers: Headers, secret: string, vercel: boolean) {
+export function loginRateKey(
+  headers: Headers,
+  secret: string,
+  vercel: boolean,
+) {
   const forwarded = headers.get("x-vercel-forwarded-for")?.trim() ?? "";
-  const client = vercel && isIP(forwarded) ? forwarded : "shared-local-or-unknown";
+  const client =
+    vercel && isIP(forwarded) ? forwarded : "shared-local-or-unknown";
   return createHmac("sha256", secret).update(`login:${client}`).digest("hex");
 }
 

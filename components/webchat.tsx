@@ -11,6 +11,7 @@ import {
 } from "@/lib/chat";
 
 type Session = { mode: "demo" | "live" | "setup"; authenticated: boolean };
+
 function Icon({
   name,
   ...props
@@ -43,6 +44,7 @@ function Icon({
     </svg>
   );
 }
+
 async function api<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, {
     ...init,
@@ -58,12 +60,14 @@ async function api<T>(url: string, init?: RequestInit): Promise<T> {
     );
   return data as T;
 }
+
 function time(value: string) {
   return new Date(value).toLocaleTimeString("th-TH", {
     hour: "2-digit",
     minute: "2-digit",
   });
 }
+
 function date(value: string) {
   return new Date(value).toLocaleDateString("th-TH", {
     day: "numeric",
@@ -71,6 +75,7 @@ function date(value: string) {
     year: "numeric",
   });
 }
+
 function Avatar({ name, index = 0 }: { name: string; index?: number }) {
   return (
     <span aria-hidden="true" className={`avatar tone-${index % 3}`}>
@@ -103,6 +108,7 @@ export default function Webchat() {
   const visible = filterConversations(people, query, unreadOnly);
   const shown = messages.filter((m) => m.userId === selected);
   const unread = people.filter((p) => p.unread > 0).length;
+  const lastMessageId = shown.at(-1)?.id;
 
   async function loadSession() {
     try {
@@ -119,6 +125,7 @@ export default function Webchat() {
       setError("โหลดแอปไม่สำเร็จ กรุณาลองเชื่อมต่อใหม่");
     }
   }
+
   useEffect(() => {
     const timer = setTimeout(() => void loadSession(), 0);
     return () => clearTimeout(timer);
@@ -181,7 +188,6 @@ export default function Webchat() {
     };
   }, [session, selected]);
 
-  const lastMessageId = shown.at(-1)?.id;
   useEffect(() => {
     const list = bottom.current?.parentElement;
     if (list) list.scrollTop = list.scrollHeight;
@@ -201,6 +207,7 @@ export default function Webchat() {
       setLoading(true);
     }
   }
+
   async function send(event: React.FormEvent) {
     event.preventDefault();
     if (!selected || !draft.trim() || sending) return;
@@ -260,6 +267,7 @@ export default function Webchat() {
       setSending(false);
     }
   }
+
   async function login(event: React.FormEvent) {
     event.preventDefault();
     setLoggingIn(true);
@@ -277,6 +285,7 @@ export default function Webchat() {
       setLoggingIn(false);
     }
   }
+
   async function logout() {
     try {
       await api("/api/session", { method: "DELETE" });
@@ -290,6 +299,7 @@ export default function Webchat() {
       setError("ออกจากระบบไม่สำเร็จ กรุณาลองอีกครั้ง");
     }
   }
+
   function simulateIncoming() {
     const id = selected || "demo-1";
     const message: Message = {
@@ -329,6 +339,7 @@ export default function Webchat() {
         )}
       </main>
     );
+
   if (session.mode === "setup")
     return (
       <main className="entry">
@@ -341,6 +352,7 @@ export default function Webchat() {
         </button>
       </main>
     );
+
   if (!demo && !session.authenticated)
     return (
       <main className="entry">

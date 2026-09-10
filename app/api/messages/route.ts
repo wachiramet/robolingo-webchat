@@ -4,7 +4,9 @@ import {
   validRequestId,
   validUserId,
 } from "../../../lib/security";
+
 export const runtime = "nodejs";
+
 export async function GET(request: Request) {
   const error = guard(request);
   if (error) return error;
@@ -20,6 +22,7 @@ export async function GET(request: Request) {
     return json({ error: "Could not load messages." }, 502);
   }
 }
+
 export async function POST(request: Request) {
   const error = guard(request, true);
   if (error) return error;

@@ -9,6 +9,7 @@ const required = [
   "SESSION_SECRET",
   "APP_URL",
 ] as const;
+
 export function mode(): "demo" | "live" | "setup" {
   if (process.env.DEMO_MODE === "true") return "demo";
   if (
@@ -35,6 +36,7 @@ export function mode(): "demo" | "live" | "setup" {
   }
   return "live";
 }
+
 export function authenticated(request: Request) {
   const token =
     request.headers
@@ -47,18 +49,21 @@ export function authenticated(request: Request) {
     mode() === "live" && verifySession(token, process.env.SESSION_SECRET ?? "")
   );
 }
+
 export function sameOrigin(request: Request) {
   return (
     request.headers.get("origin") ===
     new URL(process.env.APP_URL || request.url).origin
   );
 }
+
 export function json(data: unknown, status = 200) {
   return Response.json(data, {
     status,
     headers: { "Cache-Control": "no-store" },
   });
 }
+
 export function guard(request: Request, mutation = false) {
   if (mode() !== "live")
     return json({ error: "Integration is not configured." }, 503);
@@ -67,6 +72,7 @@ export function guard(request: Request, mutation = false) {
     return json({ error: "Request not allowed." }, 403);
   return null;
 }
+
 export async function db(path: string, init: RequestInit = {}) {
   const response = await fetch(`${process.env.SUPABASE_URL}/rest/v1/${path}`, {
     ...init,
@@ -82,9 +88,11 @@ export async function db(path: string, init: RequestInit = {}) {
   if (!response.ok) throw new Error("Storage unavailable");
   return response.status === 204 ? null : response.json();
 }
+
 export async function rpc(name: string, body: unknown) {
   return db(`rpc/${name}`, { method: "POST", body: JSON.stringify(body) });
 }
+
 export function messageDto(row: Record<string, string>) {
   return {
     id: row.id,

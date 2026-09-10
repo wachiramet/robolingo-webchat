@@ -1,6 +1,8 @@
 import { json, mode, rpc } from "../../../../lib/server";
 import { validUserId, verifyLineSignature } from "../../../../lib/security";
+
 export const runtime = "nodejs";
+
 export async function POST(request: Request) {
   if (mode() !== "live")
     return json({ error: "Integration is not configured." }, 503);

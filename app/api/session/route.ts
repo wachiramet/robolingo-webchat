@@ -1,9 +1,22 @@
-import { authenticated, json, mode, rpc, sameOrigin } from "../../../lib/server";
-import { loginRateKey, passwordMatches, signSession } from "../../../lib/security";
+import {
+  authenticated,
+  json,
+  mode,
+  rpc,
+  sameOrigin,
+} from "../../../lib/server";
+import {
+  loginRateKey,
+  passwordMatches,
+  signSession,
+} from "../../../lib/security";
+
 export const runtime = "nodejs";
+
 export async function GET(request: Request) {
   return json({ mode: mode(), authenticated: authenticated(request) });
 }
+
 export async function POST(request: Request) {
   if (mode() !== "live")
     return json({ error: "Integration is not configured." }, 503);
@@ -46,6 +59,7 @@ export async function POST(request: Request) {
     return json({ error: "Invalid request." }, 400);
   }
 }
+
 export async function DELETE(request: Request) {
   if (!sameOrigin(request)) return json({ error: "Request not allowed." }, 403);
   const response = json({ authenticated: false });

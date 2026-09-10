@@ -31,17 +31,17 @@ npm run dev
 2. สร้าง Supabase project แล้วรัน `database/schema.sql` ใน SQL Editor (ใช้ฐานข้อมูลแยกสำหรับงานนี้)
 3. กำหนด environment:
 
-| ตัวแปร | ค่า |
-| --- | --- |
-| `DEMO_MODE` | `false` |
-| `LINE_CHANNEL_ACCESS_TOKEN` | Channel access token |
-| `LINE_CHANNEL_SECRET` | Channel secret |
-| `LINE_CHANNEL_ID` | Channel ID สำหรับอ้างอิง (เก็บฝั่งเซิร์ฟเวอร์) |
-| `SUPABASE_URL` | URL โปรเจกต์ Supabase |
-| `SUPABASE_SERVICE_ROLE_KEY` | legacy service_role key เฉพาะฝั่งเซิร์ฟเวอร์ |
-| `ADMIN_PASSWORD` | รหัสผ่านแอดมินอย่างน้อย 12 ตัวอักษร |
-| `SESSION_SECRET` | ค่าสุ่มอย่างน้อย 32 ตัวอักษร เช่น `openssl rand -hex 32` |
-| `APP_URL` | origin ของเว็บที่ใช้งานจริง เช่น `https://your-app.vercel.app` |
+| ตัวแปร                      | ค่า                                                            |
+| --------------------------- | -------------------------------------------------------------- |
+| `DEMO_MODE`                 | `false`                                                        |
+| `LINE_CHANNEL_ACCESS_TOKEN` | Channel access token                                           |
+| `LINE_CHANNEL_SECRET`       | Channel secret                                                 |
+| `LINE_CHANNEL_ID`           | Channel ID สำหรับอ้างอิง (เก็บฝั่งเซิร์ฟเวอร์)                 |
+| `SUPABASE_URL`              | URL โปรเจกต์ Supabase                                          |
+| `SUPABASE_SERVICE_ROLE_KEY` | legacy service_role key เฉพาะฝั่งเซิร์ฟเวอร์                   |
+| `ADMIN_PASSWORD`            | รหัสผ่านแอดมินอย่างน้อย 12 ตัวอักษร                            |
+| `SESSION_SECRET`            | ค่าสุ่มอย่างน้อย 32 ตัวอักษร เช่น `openssl rand -hex 32`       |
+| `APP_URL`                   | origin ของเว็บที่ใช้งานจริง เช่น `https://your-app.vercel.app` |
 
 4. ตั้ง webhook เป็น `https://your-app.vercel.app/api/line/webhook` ใน LINE Developers และเปิด Use webhook กับ webhook redelivery
 5. กด Verify webhook ต้องสำเร็จ จากนั้นเพิ่มเพื่อน OA และส่งข้อความจาก LINE ส่วนตัว

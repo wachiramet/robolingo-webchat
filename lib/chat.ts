@@ -5,6 +5,7 @@ export type Conversation = {
   updatedAt: string;
   unread: number;
 };
+
 export type Message = {
   id: string;
   userId: string;
@@ -12,6 +13,7 @@ export type Message = {
   direction: "incoming" | "outgoing";
   createdAt: string;
 };
+
 export const DEMO_PEOPLE: Conversation[] = [
   {
     id: "demo-1",
@@ -35,6 +37,7 @@ export const DEMO_PEOPLE: Conversation[] = [
     unread: 1,
   },
 ];
+
 export const DEMO_MESSAGES: Message[] = [
   {
     id: "d1",
@@ -72,6 +75,7 @@ export const DEMO_MESSAGES: Message[] = [
     createdAt: "2026-09-09T09:10:00Z",
   },
 ];
+
 export function filterConversations(
   people: Conversation[],
   query: string,
@@ -86,6 +90,7 @@ export function filterConversations(
         p.id.toLocaleLowerCase().includes(term)),
   );
 }
+
 export function orderConversations(people: Conversation[]) {
   return [...people].sort(
     (a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt),
