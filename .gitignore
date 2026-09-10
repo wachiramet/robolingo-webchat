@@ -1,0 +1,16 @@
+node_modules/
+.next/
+.env*
+!.env.example
+.vercel/
+*.tsbuildinfo
+.impeccable/review/
+.omx/state/
+
+# Local working notes and review artifacts
+WORKLOG.md
+.impeccable/
+.omx/
+PRODUCT.md
+DESIGN.md
+.vercel
