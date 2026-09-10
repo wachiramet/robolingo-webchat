@@ -110,7 +110,7 @@ PLAYWRIGHT_MODULE=/absolute/path/to/playwright/index.js node tests/browser-smoke
 ## ลิงก์ส่งงาน
 
 - LINE OA: https://line.me/R/ti/p/@099nyaqc
-- Vercel: https://robolingo-webchat.vercel.app
+- Vercel: https://robolingo-webchat-eight.vercel.app
 - Public GitHub: https://github.com/wachiramet/robolingo-webchat
 
 ## เอกสารอ้างอิง
